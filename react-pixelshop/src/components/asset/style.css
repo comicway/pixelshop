@@ -1,0 +1,12 @@
+.btn-clasic {
+    border-radius: 0px;
+    background-color: #F2F3F5;
+    padding: 14px;
+}
+.btn-clasic:hover {
+    color: #7f1858;
+    background-color: #F2F3F5;
+}
+.margin-menu {
+    margin: 8px 11px;
+}
