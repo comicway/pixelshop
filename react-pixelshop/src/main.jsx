@@ -7,12 +7,35 @@ import NavBar from './components/NavBar/navbar';
 import HeaderPixel from './components/Header/header';
 import ItemListContainer from './components/ItemListContainer/itemlistcontainer';
 import ImgProduct from "./components/asset/manga-aku-no-hana-tomo-02-1.webp"
+import Products from './components/products/products';
 
 const rootDivElement = document.getElementById('root');
 
 const root = ReactDOM.createRoot(rootDivElement);
 
 function App(){
+  state = {
+    products: [
+      {
+        name:'Aku no hana 01',
+        price: 9990,
+        img:'./components/asset/manga-aku-no-hana-tomo-02-1.webp',
+        editorial: 'IVREA', 
+      },
+      {
+        name:'La Broma Asesina',
+        price: 24990,
+        img:'./components/asset/manga-aku-no-hana-tomo-02-1.webp',
+        editorial: 'OVNI PRESS', 
+      },
+      {
+        name:'Golden Kamuy 01',
+        price: 12890,
+        img:'./components/asset/manga-aku-no-hana-tomo-02-1.webp',
+        editorial: 'PANINI', 
+      }
+    ]
+  }
     return (
       <>
         <div className="container">
@@ -31,6 +54,10 @@ function App(){
                 <h4>Editoriales</h4>
             </div>
             <div className='col-10'>
+                <Products
+                  agregarAlCarro = { () => console.log('por ahora no hace nada')}
+                  products = {this.states.products}
+                />
                 <div className='row row-margin'>
                   <div className='col-4 padding-card'>
                       <div className=''>
