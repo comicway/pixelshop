@@ -11,7 +11,7 @@ const HeaderPixel = () => {
         </a>
       </div>
       <div className="col-4 text-center">
-        <a class="blog-header-logo text-body-emphasis text-decoration-none" href="#">
+        <a className="blog-header-logo text-body-emphasis text-decoration-none" href="#">
           <img src={LogoPng} alt="logo comic way" />
         </a>
       </div>
