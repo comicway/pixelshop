@@ -19,19 +19,19 @@ class App extends Component {
       {
         name:'Aku no hana 01',
         price: 9990,
-        img:'./components/asset/manga-aku-no-hana-tomo-02-1.webp',
+        img:'src/components/asset/manga-aku-no-hana-tomo-02-1.webp',
         editorial: 'IVREA', 
       },
       {
         name:'La Broma Asesina',
         price: 24990,
-        img:'./components/asset/manga-aku-no-hana-tomo-02-1.webp',
+        img:'src/components/asset/manga-aku-no-hana-tomo-02-1.webp',
         editorial: 'OVNI PRESS', 
       },
       {
         name:'Golden Kamuy 01',
         price: 12890,
-        img:'./components/asset/manga-aku-no-hana-tomo-02-1.webp',
+        img:'src/components/asset/manga-golden-kamuy-tomo-01-comic-way-001.jpg',
         editorial: 'PANINI', 
       }
     ]
@@ -55,222 +55,12 @@ class App extends Component {
                 <h4>Editoriales</h4>
             </div>
             <div className='col-10'>
+              <div className='row row-margin'>
                 <Products
                   agregarAlCarro = { () => console.log('por ahora no hace nada')}
                   products = {this.state.products}
                 />
-                <div className='row row-margin'>
-                  <div className='col-4 padding-card'>
-                      <div className=''>
-                      <img src={ImgProduct} width="418" height="586" alt="manga imagen de prioducto" />
-                        <div className='card-body bodycard-grilla'>
-                          <span className='card-text'>Aku No Hana 01</span>
-                          <div>
-                          <span>$9.990</span>
-                          </div>
-                          <div className='d-flex justify-content-between align-items-center'>
-                            <small className='text-body-secondary'>IVREA</small>
-                              <div className='btn-group'>
-                                <button type="button" className='btn btn-cart'>Añadir al carrito</button>
-                              </div>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-                  <div className='col-4 padding-card'>
-                      <div className=''>
-                      <img src={ImgProduct} width="418" height="586" alt="manga imagen de prioducto" />
-                        <div className='card-body bodycard-grilla'>
-                          <span className='card-text'>Aku No Hana 01</span>
-                          <div>
-                          <span>$9.990</span>
-                          </div>
-                          <div className='d-flex justify-content-between align-items-center'>
-                            <small className='text-body-secondary'>IVREA</small>
-                              <div className='btn-group'>
-                                <button type="button" className='btn btn-cart'>Añadir al carrito</button>
-                              </div>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-                  <div className='col-4 padding-card'>
-                      <div className=''>
-                      <img src={ImgProduct} width="418" height="586" alt="manga imagen de prioducto" />
-                        <div className='card-body bodycard-grilla'>
-                          <span className='card-text'>Aku No Hana 01</span>
-                          <div>
-                          <span>$9.990</span>
-                          </div>
-                          <div className='d-flex justify-content-between align-items-center'>
-                            <small className='text-body-secondary'>IVREA</small>
-                              <div className='btn-group'>
-                                <button type="button" className='btn btn-cart'>Añadir al carrito</button>
-                              </div>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-                </div>
-                <div className='row row-margin'>
-                  <div className='col-4 padding-card'>
-                      <div className=''>
-                      <img src={ImgProduct} width="418" height="586" alt="manga imagen de prioducto" />
-                        <div className='card-body bodycard-grilla'>
-                          <span className='card-text'>Aku No Hana 01</span>
-                          <div>
-                          <span>$9.990</span>
-                          </div>
-                          <div className='d-flex justify-content-between align-items-center'>
-                            <small className='text-body-secondary'>IVREA</small>
-                              <div className='btn-group'>
-                                <button type="button" className='btn btn-cart'>Añadir al carrito</button>
-                              </div>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-                  <div className='col-4 padding-card'>
-                      <div className=''>
-                      <img src={ImgProduct} width="418" height="586" alt="manga imagen de prioducto" />
-                        <div className='card-body bodycard-grilla'>
-                          <span className='card-text'>Aku No Hana 01</span>
-                          <div>
-                          <span>$9.990</span>
-                          </div>
-                          <div className='d-flex justify-content-between align-items-center'>
-                            <small className='text-body-secondary'>IVREA</small>
-                              <div className='btn-group'>
-                                <button type="button" className='btn btn-cart'>Añadir al carrito</button>
-                              </div>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-                  <div className='col-4 padding-card'>
-                      <div className=''>
-                      <img src={ImgProduct} width="418" height="586" alt="manga imagen de prioducto" />
-                        <div className='card-body bodycard-grilla'>
-                          <span className='card-text'>Aku No Hana 01</span>
-                          <div>
-                          <span>$9.990</span>
-                          </div>
-                          <div className='d-flex justify-content-between align-items-center'>
-                            <small className='text-body-secondary'>IVREA</small>
-                              <div className='btn-group'>
-                                <button type="button" className='btn btn-cart'>Añadir al carrito</button>
-                              </div>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-                </div>
-                <div className='row row-margin'>
-                  <div className='col-4 padding-card'>
-                      <div className=''>
-                      <img src={ImgProduct} width="418" height="586" alt="manga imagen de prioducto" />
-                        <div className='card-body bodycard-grilla'>
-                          <span className='card-text'>Aku No Hana 01</span>
-                          <div>
-                          <span>$9.990</span>
-                          </div>
-                          <div className='d-flex justify-content-between align-items-center'>
-                            <small className='text-body-secondary'>IVREA</small>
-                              <div className='btn-group'>
-                                <button type="button" className='btn btn-cart'>Añadir al carrito</button>
-                              </div>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-                  <div className='col-4 padding-card'>
-                      <div className=''>
-                      <img src={ImgProduct} width="418" height="586" alt="manga imagen de prioducto" />
-                        <div className='card-body bodycard-grilla'>
-                          <span className='card-text'>Aku No Hana 01</span>
-                          <div>
-                          <span>$9.990</span>
-                          </div>
-                          <div className='d-flex justify-content-between align-items-center'>
-                            <small className='text-body-secondary'>IVREA</small>
-                              <div className='btn-group'>
-                                <button type="button" className='btn btn-cart'>Añadir al carrito</button>
-                              </div>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-                  <div className='col-4 padding-card'>
-                      <div className=''>
-                      <img src={ImgProduct} width="418" height="586" alt="manga imagen de prioducto" />
-                        <div className='card-body bodycard-grilla'>
-                          <span className='card-text'>Aku No Hana 01</span>
-                          <div>
-                          <span>$9.990</span>
-                          </div>
-                          <div className='d-flex justify-content-between align-items-center'>
-                            <small className='text-body-secondary'>IVREA</small>
-                              <div className='btn-group'>
-                                <button type="button" className='btn btn-cart'>Añadir al carrito</button>
-                              </div>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-                </div>
-                <div className='row row-margin'>
-                  <div className='col-4 padding-card'>
-                      <div className=''>
-                      <img src={ImgProduct} width="418" height="586" alt="manga imagen de prioducto" />
-                        <div className='card-body bodycard-grilla'>
-                          <span className='card-text'>Aku No Hana 01</span>
-                          <div>
-                          <span>$9.990</span>
-                          </div>
-                          <div className='d-flex justify-content-between align-items-center'>
-                            <small className='text-body-secondary'>IVREA</small>
-                              <div className='btn-group'>
-                                <button type="button" className='btn btn-cart'>Añadir al carrito</button>
-                              </div>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-                  <div className='col-4 padding-card'>
-                      <div className=''>
-                      <img src={ImgProduct} width="418" height="586" alt="manga imagen de prioducto" />
-                        <div className='card-body bodycard-grilla'>
-                          <span className='card-text'>Aku No Hana 01</span>
-                          <div>
-                          <span>$9.990</span>
-                          </div>
-                          <div className='d-flex justify-content-between align-items-center'>
-                            <small className='text-body-secondary'>IVREA</small>
-                              <div className='btn-group'>
-                                <button type="button" className='btn btn-cart'>Añadir al carrito</button>
-                              </div>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-                  <div className='col-4 padding-card'>
-                      <div className=''>
-                      <img src={ImgProduct} width="418" height="586" alt="manga imagen de prioducto" />
-                        <div className='card-body bodycard-grilla'>
-                          <span className='card-text'>Aku No Hana 01</span>
-                          <div>
-                          <span>$9.990</span>
-                          </div>
-                          <div className='d-flex justify-content-between align-items-center'>
-                            <small className='text-body-secondary'>IVREA</small>
-                              <div className='btn-group'>
-                                <button type="button" className='btn btn-cart'>Añadir al carrito</button>
-                              </div>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-                </div>
+              </div>
             </div>
           </div>
           

@@ -1,4 +1,5 @@
 import { Component } from "react";
+import Product from "./product";
 
 class Products extends Component {
     render () {
@@ -9,7 +10,7 @@ class Products extends Component {
                 {products.map(product =>
                     <Product
                         agregarAlCarro={agregarAlCarro}
-                        key={producto.name}
+                        key={product.name}
                         product={product}
                     />
                     )}
