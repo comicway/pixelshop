@@ -2,11 +2,9 @@ import { Component } from 'react';
 import ReactDOM from 'react-dom/client';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import './components/asset/style.css';
-import NavBar from './components/NavBar/navbar';
+import '/public/asset/css/style.css'
 import HeaderPixel from './components/Header/header';
 import ItemListContainer from './components/ItemListContainer/itemlistcontainer';
-import ImgProduct from "./components/asset/manga-aku-no-hana-tomo-02-1.webp"
 import Products from './components/products/products';
 
 const rootDivElement = document.getElementById('root');
@@ -19,19 +17,19 @@ class App extends Component {
       {
         name:'Aku no hana 01',
         price: 9990,
-        img:'src/components/asset/manga-aku-no-hana-tomo-02-1.webp',
+        img:'/public/asset/img/manga-aku-no-hana-tomo-02-1.webp',
         editorial: 'IVREA', 
       },
       {
         name:'La Broma Asesina',
         price: 24990,
-        img:'src/components/asset/manga-aku-no-hana-tomo-02-1.webp',
+        img:'/public/asset/img/manga-aku-no-hana-tomo-02-1.webp',
         editorial: 'OVNI PRESS', 
       },
       {
         name:'Golden Kamuy 01',
         price: 12890,
-        img:'src/components/asset/manga-golden-kamuy-tomo-01-comic-way-001.jpg',
+        img:'/public/asset/img/manga-golden-kamuy-tomo-01-comic-way-001.jpg',
         editorial: 'PANINI', 
       }
     ]
@@ -41,7 +39,6 @@ class App extends Component {
       <>
         <div className="container">
             <HeaderPixel/>
-            <NavBar/>
             <ItemListContainer saludo= {'Hola Mundo'} despedida= {'Chao Mundo'}/>
         </div>
         <div className='container-fluid'>
@@ -55,12 +52,10 @@ class App extends Component {
                 <h4>Editoriales</h4>
             </div>
             <div className='col-10'>
-              <div className='row row-margin'>
                 <Products
                   agregarAlCarro = { () => console.log('por ahora no hace nada')}
                   products = {this.state.products}
                 />
-              </div>
             </div>
           </div>
           
