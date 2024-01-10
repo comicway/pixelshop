@@ -4,7 +4,7 @@ class Product extends Component {
     render () {
         const {product} = this.props
         return (
-            <div>
+            
                   <div className='col-4 padding-card'>
                       <div className=''>
                       <img width="418" height="586" alt={product.name} src={product.img} />
@@ -22,7 +22,7 @@ class Product extends Component {
                         </div>
                       </div>
                   </div>
-            </div>
+            
         )
     }
 }

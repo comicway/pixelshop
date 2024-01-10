@@ -39,7 +39,7 @@ class App extends Component {
       <>
         <div className="container">
             <HeaderPixel/>
-            <ItemListContainer saludo= {'Hola Mundo'} despedida= {'Chao Mundo'}/>
+            {/* <ItemListContainer saludo= {'Hola Mundo'} despedida= {'Chao Mundo'}/> */}
         </div>
         <div className='container-fluid'>
           <div className='row'>
