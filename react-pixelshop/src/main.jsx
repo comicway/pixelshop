@@ -32,9 +32,38 @@ class App extends Component {
         img:'/public/asset/img/manga-golden-kamuy-tomo-01-comic-way-001.jpg',
         editorial: 'PANINI', 
       }
-    ]
-  };
+    ],
+    carro: [
+      /*{
+        name:'La Broma Asesina',
+        price: 24990,
+        img:'/public/asset/img/manga-aku-no-hana-tomo-02-1.webp',
+        cantidad: 1, 
+      },*/
+    ],
+  }
+
+  agregarAlCarro = (product) => {
+    const { carro } = this.state
+    if (carro.find(x => x.name === product.name)){
+      const newCarro = carro.map(x => x.name === product.name
+        ? ({
+          ...x,
+          cantidad: x.cantidad + 1
+        })
+        : x)
+        return this.setState({ carro: newCarro})
+    }
+    return this.setState({
+      carro: this.state.carro.concat({
+        ...product,
+        cantidad: 1,
+      })
+    })
+  }
+
   render(){
+    console.log(this.state.carro)
     return (
       <>
         <div className="container">
@@ -53,7 +82,7 @@ class App extends Component {
             </div>
             <div className='col-10'>
                 <Products
-                  agregarAlCarro = { () => console.log('por ahora no hace nada')}
+                  agregarAlCarro = {this.agregarAlCarro}
                   products = {this.state.products}
                 />
             </div>
