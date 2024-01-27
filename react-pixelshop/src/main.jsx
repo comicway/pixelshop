@@ -1,254 +1,98 @@
-import React from 'react';
+import { Component } from 'react';
 import ReactDOM from 'react-dom/client';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import './components/asset/style.css';
-import NavBar from './components/NavBar/navbar';
+import '/public/asset/css/style.css'
 import HeaderPixel from './components/Header/header';
 import ItemListContainer from './components/ItemListContainer/itemlistcontainer';
-import ImgProduct from "./components/asset/manga-aku-no-hana-tomo-02-1.webp"
+import Products from './components/products/products';
 
 const rootDivElement = document.getElementById('root');
 
 const root = ReactDOM.createRoot(rootDivElement);
 
-function App(){
+class App extends Component {
+  state = {
+    products: [
+      {
+        name:'Aku no hana 01',
+        price: 9990,
+        img:'/public/asset/img/manga-aku-no-hana-tomo-02-1.webp',
+        editorial: 'IVREA', 
+      },
+      {
+        name:'La Broma Asesina',
+        price: 24990,
+        img:'/public/asset/img/manga-aku-no-hana-tomo-02-1.webp',
+        editorial: 'OVNI PRESS', 
+      },
+      {
+        name:'Golden Kamuy 01',
+        price: 12890,
+        img:'/public/asset/img/manga-golden-kamuy-tomo-01-comic-way-001.jpg',
+        editorial: 'PANINI', 
+      }
+    ],
+    carro: [
+      /*{
+        name:'La Broma Asesina',
+        price: 24990,
+        img:'/public/asset/img/manga-aku-no-hana-tomo-02-1.webp',
+        cantidad: 1, 
+      },*/
+    ],
+  }
+
+  agregarAlCarro = (product) => {
+    const { carro } = this.state
+    if (carro.find(x => x.name === product.name)){
+      const newCarro = carro.map(x => x.name === product.name
+        ? ({
+          ...x,
+          cantidad: x.cantidad + 1
+        })
+        : x)
+        return this.setState({ carro: newCarro})
+    }
+    return this.setState({
+      carro: this.state.carro.concat({
+        ...product,
+        cantidad: 1,
+      })
+    })
+  }
+
+  render(){
+    console.log(this.state.carro)
     return (
       <>
         <div className="container">
             <HeaderPixel/>
-            <NavBar/>
-            <ItemListContainer saludo= {'Hola Mundo'} despedida= {'Chao Mundo'}/>
+            {/* <ItemListContainer saludo= {'Hola Mundo'} despedida= {'Chao Mundo'}/> */}
         </div>
         <div className='container-fluid'>
           <div className='row'>
               <div className='col-2'>
                 <div className="d-flex flex-row mb-2">
-                  <div class="p-2"><h4>Mangas</h4></div>
-                  <div class="p-2"><i class="bi bi-plus-circle-fill"></i></div>
+                  <div className="p-2"><h4>Mangas</h4></div>
+                  <div className="p-2"><i className="bi bi-plus-circle-fill"></i></div>
                 </div>
                 <h4>Generos</h4>
                 <h4>Editoriales</h4>
             </div>
             <div className='col-10'>
-                <div className='row row-margin'>
-                  <div className='col-4 padding-card'>
-                      <div className=''>
-                      <img src={ImgProduct} width="418" height="586" alt="manga imagen de prioducto" />
-                        <div className='card-body bodycard-grilla'>
-                          <spam className='card-text'>Aku No Hana 01</spam>
-                          <div>
-                          <spam>$9.990</spam>
-                          </div>
-                          <div className='d-flex justify-content-between align-items-center'>
-                            <small className='text-body-secondary'>IVREA</small>
-                              <div className='btn-group'>
-                                <button type="button" className='btn btn-cart'>Añadir al carrito</button>
-                              </div>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-                  <div className='col-4 padding-card'>
-                      <div className=''>
-                      <img src={ImgProduct} width="418" height="586" alt="manga imagen de prioducto" />
-                        <div className='card-body bodycard-grilla'>
-                          <spam className='card-text'>Aku No Hana 01</spam>
-                          <div>
-                          <spam>$9.990</spam>
-                          </div>
-                          <div className='d-flex justify-content-between align-items-center'>
-                            <small className='text-body-secondary'>IVREA</small>
-                              <div className='btn-group'>
-                                <button type="button" className='btn btn-cart'>Añadir al carrito</button>
-                              </div>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-                  <div className='col-4 padding-card'>
-                      <div className=''>
-                      <img src={ImgProduct} width="418" height="586" alt="manga imagen de prioducto" />
-                        <div className='card-body bodycard-grilla'>
-                          <spam className='card-text'>Aku No Hana 01</spam>
-                          <div>
-                          <spam>$9.990</spam>
-                          </div>
-                          <div className='d-flex justify-content-between align-items-center'>
-                            <small className='text-body-secondary'>IVREA</small>
-                              <div className='btn-group'>
-                                <button type="button" className='btn btn-cart'>Añadir al carrito</button>
-                              </div>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-                </div>
-                <div className='row row-margin'>
-                  <div className='col-4 padding-card'>
-                      <div className=''>
-                      <img src={ImgProduct} width="418" height="586" alt="manga imagen de prioducto" />
-                        <div className='card-body bodycard-grilla'>
-                          <spam className='card-text'>Aku No Hana 01</spam>
-                          <div>
-                          <spam>$9.990</spam>
-                          </div>
-                          <div className='d-flex justify-content-between align-items-center'>
-                            <small className='text-body-secondary'>IVREA</small>
-                              <div className='btn-group'>
-                                <button type="button" className='btn btn-cart'>Añadir al carrito</button>
-                              </div>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-                  <div className='col-4 padding-card'>
-                      <div className=''>
-                      <img src={ImgProduct} width="418" height="586" alt="manga imagen de prioducto" />
-                        <div className='card-body bodycard-grilla'>
-                          <spam className='card-text'>Aku No Hana 01</spam>
-                          <div>
-                          <spam>$9.990</spam>
-                          </div>
-                          <div className='d-flex justify-content-between align-items-center'>
-                            <small className='text-body-secondary'>IVREA</small>
-                              <div className='btn-group'>
-                                <button type="button" className='btn btn-cart'>Añadir al carrito</button>
-                              </div>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-                  <div className='col-4 padding-card'>
-                      <div className=''>
-                      <img src={ImgProduct} width="418" height="586" alt="manga imagen de prioducto" />
-                        <div className='card-body bodycard-grilla'>
-                          <spam className='card-text'>Aku No Hana 01</spam>
-                          <div>
-                          <spam>$9.990</spam>
-                          </div>
-                          <div className='d-flex justify-content-between align-items-center'>
-                            <small className='text-body-secondary'>IVREA</small>
-                              <div className='btn-group'>
-                                <button type="button" className='btn btn-cart'>Añadir al carrito</button>
-                              </div>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-                </div>
-                <div className='row row-margin'>
-                  <div className='col-4 padding-card'>
-                      <div className=''>
-                      <img src={ImgProduct} width="418" height="586" alt="manga imagen de prioducto" />
-                        <div className='card-body bodycard-grilla'>
-                          <spam className='card-text'>Aku No Hana 01</spam>
-                          <div>
-                          <spam>$9.990</spam>
-                          </div>
-                          <div className='d-flex justify-content-between align-items-center'>
-                            <small className='text-body-secondary'>IVREA</small>
-                              <div className='btn-group'>
-                                <button type="button" className='btn btn-cart'>Añadir al carrito</button>
-                              </div>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-                  <div className='col-4 padding-card'>
-                      <div className=''>
-                      <img src={ImgProduct} width="418" height="586" alt="manga imagen de prioducto" />
-                        <div className='card-body bodycard-grilla'>
-                          <spam className='card-text'>Aku No Hana 01</spam>
-                          <div>
-                          <spam>$9.990</spam>
-                          </div>
-                          <div className='d-flex justify-content-between align-items-center'>
-                            <small className='text-body-secondary'>IVREA</small>
-                              <div className='btn-group'>
-                                <button type="button" className='btn btn-cart'>Añadir al carrito</button>
-                              </div>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-                  <div className='col-4 padding-card'>
-                      <div className=''>
-                      <img src={ImgProduct} width="418" height="586" alt="manga imagen de prioducto" />
-                        <div className='card-body bodycard-grilla'>
-                          <spam className='card-text'>Aku No Hana 01</spam>
-                          <div>
-                          <spam>$9.990</spam>
-                          </div>
-                          <div className='d-flex justify-content-between align-items-center'>
-                            <small className='text-body-secondary'>IVREA</small>
-                              <div className='btn-group'>
-                                <button type="button" className='btn btn-cart'>Añadir al carrito</button>
-                              </div>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-                </div>
-                <div className='row row-margin'>
-                  <div className='col-4 padding-card'>
-                      <div className=''>
-                      <img src={ImgProduct} width="418" height="586" alt="manga imagen de prioducto" />
-                        <div className='card-body bodycard-grilla'>
-                          <spam className='card-text'>Aku No Hana 01</spam>
-                          <div>
-                          <spam>$9.990</spam>
-                          </div>
-                          <div className='d-flex justify-content-between align-items-center'>
-                            <small className='text-body-secondary'>IVREA</small>
-                              <div className='btn-group'>
-                                <button type="button" className='btn btn-cart'>Añadir al carrito</button>
-                              </div>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-                  <div className='col-4 padding-card'>
-                      <div className=''>
-                      <img src={ImgProduct} width="418" height="586" alt="manga imagen de prioducto" />
-                        <div className='card-body bodycard-grilla'>
-                          <spam className='card-text'>Aku No Hana 01</spam>
-                          <div>
-                          <spam>$9.990</spam>
-                          </div>
-                          <div className='d-flex justify-content-between align-items-center'>
-                            <small className='text-body-secondary'>IVREA</small>
-                              <div className='btn-group'>
-                                <button type="button" className='btn btn-cart'>Añadir al carrito</button>
-                              </div>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-                  <div className='col-4 padding-card'>
-                      <div className=''>
-                      <img src={ImgProduct} width="418" height="586" alt="manga imagen de prioducto" />
-                        <div className='card-body bodycard-grilla'>
-                          <spam className='card-text'>Aku No Hana 01</spam>
-                          <div>
-                          <spam>$9.990</spam>
-                          </div>
-                          <div className='d-flex justify-content-between align-items-center'>
-                            <small className='text-body-secondary'>IVREA</small>
-                              <div className='btn-group'>
-                                <button type="button" className='btn btn-cart'>Añadir al carrito</button>
-                              </div>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-                </div>
+                <Products
+                  agregarAlCarro = {this.agregarAlCarro}
+                  products = {this.state.products}
+                />
             </div>
           </div>
           
         </div>
       </>
     )
+  }
 };
 
+//export default App;
 root.render(<App/>);
