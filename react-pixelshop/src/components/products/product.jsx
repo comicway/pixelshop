@@ -1,16 +1,21 @@
 import { Component } from "react";
 import ButtonAgregar from "/src/components/ButtonAgregar/buttonagregar.jsx";
-
+import { Link } from "react-router-dom";
+ 
 class Product extends Component {
     render () {
-        const {product, agregarAlCarro} = this.props
+        const { id, product, agregarAlCarro} = this.props
         return (
             
                   <div className='col-4 padding-card'>
                       <div className=''>
-                      <img width="418" height="586" alt={product.name} src={product.img} />
+                        <Link to={`/product/${id}`}>
+                          <img width="418" height="586" alt={product.name} src={product.img} />
+                        </Link>
                         <div className='card-body bodycard-grilla'>
-                          <span className='card-text'>{product.name}</span>
+                          <Link to={`/product/${id}`}>
+                            <span className='card-text'>{product.name}</span>
+                          </Link>
                           <div>
                           <span>{product.price}</span>
                           </div>
