@@ -8,6 +8,7 @@ import HeaderPixel from './components/Header/header';
 import ItemListContainer from './components/ItemListContainer/itemlistcontainer';
 import Home from './components/Home/home';
 import PageNotFound from './components/PageNotFound/pagenotfound';
+import ProductDetailContainer from './components/ProductDetailContainer/productdetailcontainer';
 
 const rootDivElement = document.getElementById('root');
 
@@ -34,6 +35,8 @@ class App extends Component {
                 <Routes>
                   <Route path='/' element={<Home />} />
                   <Route path='/shop' element={<ItemListContainer/>} />
+                  <Route path='/shop/:filterCategory' element={<ItemListContainer/>} />
+                  <Route path='/product/:id' element={<ProductDetailContainer/>} />
                   <Route path='*' element={<PageNotFound/>} />
                 </Routes>
               </div>

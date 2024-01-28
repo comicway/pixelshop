@@ -3,7 +3,7 @@ import Product from "./product";
 
 class Products extends Component {
     render () {
-        const { products, agregarAlCarro, filterCategory} = this.props
+        const { id, products, agregarAlCarro, filterCategory} = this.props
 
         const filteredProducts = products.filter((products) => {
             return filterCategory === 'all' || products.category === filterCategory;
@@ -13,6 +13,7 @@ class Products extends Component {
             <div className="row row-margin">
                 {filteredProducts.map((product) => (
                     <Product
+                        id={product.id}
                         agregarAlCarro={agregarAlCarro}
                         key={product.name}
                         product={product}

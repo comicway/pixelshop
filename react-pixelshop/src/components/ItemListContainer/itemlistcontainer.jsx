@@ -1,12 +1,13 @@
 import { Component } from 'react';
 import {Link, NavLink} from 'react-router-dom';
 import Products from '/src/components/products/products';
-import NavBar from '../NavBar/navbar';
+// import { useParams } from 'react-router-dom';
 
 class ItemListContainer extends Component { 
     state = {
     products: [
       {
+        id: 1,
         name:'Aku no hana 01',
         price: 9990,
         img:'/public/asset/img/manga-aku-no-hana-tomo-02-1.webp',
@@ -14,6 +15,7 @@ class ItemListContainer extends Component {
         category: 'Manga', 
       },
       {
+        id: 2,
         name:'La Broma Asesina',
         price: 24990,
         img:'/public/asset/img/manga-aku-no-hana-tomo-02-1.webp',
@@ -21,6 +23,7 @@ class ItemListContainer extends Component {
         category: 'Comic',  
       },
       {
+        id: 3,
         name:'Golden Kamuy 01',
         price: 12890,
         img:'/public/asset/img/manga-golden-kamuy-tomo-01-comic-way-001.jpg',
@@ -62,13 +65,18 @@ class ItemListContainer extends Component {
     this.setState({ filterCategory: category });
   };
 
+ // const { category } = useParams()
+
     render (){
         // console.log(this.state.carro)
-        // <NavLink onClick={() => this.handleFilterChange('Manga')}>Manga</NavLink>
         console.log (this.state.filterCategory)
         return (
             <div>
-                <Products 
+                <NavLink onClick={() => this.handleFilterChange('all')}>Todos </NavLink>
+                <NavLink onClick={() => this.handleFilterChange('Manga')}>Manga </NavLink>
+                <NavLink onClick={() => this.handleFilterChange('Comic')}>Comic</NavLink>
+                <Products
+                    id= {this.state.id}
                     agregarAlCarro = {this.agregarAlCarro}
                     products = {this.state.products}
                     filterCategory = {this.state.filterCategory}
