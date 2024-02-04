@@ -1,23 +1,28 @@
-import { Component, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import ProductDetail from "../ProductDetail/productdetail";
+import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
+import ProductDetail from "../ProductDetail/productdetail"
+import { getProductById } from '../Utils/mockdata'
+import Spinner from "../Spinner/spinner"
 
-class ProductDetailContainer extends Component {
-    render(){
-        const { products, agregarAlCarro} = this.props
-        const {productId} = useParams()
-        
-        return (
-            <div className="row row-margin">
-                    <ProductDetail
-                        id={products.id}
-                        agregarAlCarro={agregarAlCarro}
-                        key={product.name}
-                        product={product}
-                    />
-            </div>
-        )
-    }
+const ProductDetailContainer = () => {
+    const [ loading, setLoading ] = useState(true)
+    const [ item, setItem ] = useState()
+    const { productId } = useParams()
+
+
+    useEffect(() => {
+        getProductById(productId).then((product) => {
+            setItem(product);
+            setLoading(false);  
+    })
+}, [productId])
+
+return (
+    <>
+      {loading ? <Spinner /> : <ProductDetail item={item} />}
+    </>
+  );
+
 }
 
 export default ProductDetailContainer

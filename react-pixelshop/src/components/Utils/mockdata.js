@@ -32,3 +32,16 @@ export const getProducts = () => {
       }, 2000)
     })
   }
+
+  export const getProductById = (productId) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const product = products.find((productId) => products.id === productId);
+        if (productId) {
+          resolve(product);
+        } else {
+          reject("Producto no encontrado");
+        }
+      }, 2000);
+    });
+  };

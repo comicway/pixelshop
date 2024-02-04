@@ -6,7 +6,7 @@ import Home from "./components/Home/home"
 import ItemListContainer from "./components/ItemListContainer/itemlistcontainerV2"
 import HeaderPixel from "./components/Header/header"
 import PageNotFound from "./components/PageNotFound/pagenotfound"
-import ProductDetailContainer from "./components/ProductDetailContainer/productdetailcontainer";
+import ProductDetailContainer from "./components/ProductDetailContainer/productdetailcontainer"
 
 function App(){
     return (
@@ -29,6 +29,7 @@ function App(){
                   <Route path='/' element={<Home />} />
                   <Route path='/shop' element={<ItemListContainer/>} />
                   <Route path='/shop/:categoryId' element={<ItemListContainer/>} />
+                  <Route path='/product/:productId' element={<ProductDetailContainer/>} />
                   <Route path='*' element={<PageNotFound/>} />
                 </Routes>
               </div>

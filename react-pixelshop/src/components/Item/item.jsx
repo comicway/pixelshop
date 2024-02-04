@@ -1,7 +1,7 @@
 //copia de product
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import ButtonAgregar from "/src/components/ButtonAgregar/buttonagregar.jsx";
+// import ButtonAgregar from "/src/components/ButtonAgregar/buttonagregar.jsx";
 
 const Item = ({id, name, img, editorial, price, category}) => {
     return (
