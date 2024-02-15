@@ -1,4 +1,11 @@
+import Spinner from "../Spinner/spinner"
+
 const ProductDetail = ({ item }) => {
+
+    if (!item) {
+        return <Spinner />
+      }
+
   const { name, img, price, category } = item
   
     return (
