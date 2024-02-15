@@ -1,5 +1,6 @@
 const ProductDetail = ({ item }) => {
   const { name, img, price, category } = item
+  
     return (
         <div className='col-4 padding-card'>
             <div className=''>
