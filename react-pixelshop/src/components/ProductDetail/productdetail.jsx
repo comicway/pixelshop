@@ -1,4 +1,5 @@
 import Spinner from "../Spinner/spinner"
+import ItemCount from "../ItemCount/itemcount"
 
 const ProductDetail = ({ item }) => {
 
@@ -19,10 +20,8 @@ const ProductDetail = ({ item }) => {
                     </div>
                     <div className='d-flex justify-content-between align-items-center'>
                         <small className='text-body-secondary'>{category}</small>
-                            <div className='btn-group'>
-                                Agregar al carro
-                            </div>
                     </div>
+                    <ItemCount/>
                 </div>
             </div>
         </div>
