@@ -8,6 +8,10 @@ const ProductDetail = ({ item }) => {
       }
 
   const { name, img, price, category } = item
+
+  const onAdd = (count) => {
+    console.log('Agregado al carro: ' + count + ' ' + name + ' a $' + price + ' c/u')
+  }
   
     return (
         <div className='col-4 padding-card'>
@@ -21,7 +25,7 @@ const ProductDetail = ({ item }) => {
                     <div className='d-flex justify-content-between align-items-center'>
                         <small className='text-body-secondary'>{category}</small>
                     </div>
-                    <ItemCount/>
+                    <ItemCount onAdd={onAdd}/>
                 </div>
             </div>
         </div>
