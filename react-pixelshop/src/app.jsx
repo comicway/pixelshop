@@ -7,9 +7,11 @@ import ItemListContainer from "./components/ItemListContainer/itemlistcontainerV
 import HeaderPixel from "./components/Header/header"
 import PageNotFound from "./components/PageNotFound/pagenotfound"
 import ProductDetailContainer from "./components/ProductDetailContainer/productdetailcontainer"
+import CartPorvider from "./components/Context/cartContext"
 
 function App(){
     return (
+      <CartPorvider>
         <BrowserRouter>
         <div className="container">
             <HeaderPixel/>
@@ -36,6 +38,7 @@ function App(){
             </div>
           </div>
       </BrowserRouter>
+    </CartPorvider>
     )
 }
 

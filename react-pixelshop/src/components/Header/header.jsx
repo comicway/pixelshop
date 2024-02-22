@@ -1,7 +1,7 @@
-import CartWidget from "../CartWidget/cartwidget";
+import CartWidget from "../CartWidget/cartwidget"
 import LogoPng from "/public/asset/img/logo-comic-way-005.png"
-import NavBar from '../NavBar/navbar';
-import { Link, NavLink} from 'react-router-dom';
+import NavBar from '../NavBar/navbar'
+import { Link, NavLink} from 'react-router-dom'
 
 const HeaderPixel = () => {
     return (
