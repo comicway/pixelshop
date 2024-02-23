@@ -1,5 +1,6 @@
 import Spinner from "../Spinner/spinner"
 import ItemCount from "../ItemCount/itemcount"
+import { useCartContext } from "../Context/cartContext"
 
 const ProductDetail = ({ item }) => {
 
@@ -9,8 +10,11 @@ const ProductDetail = ({ item }) => {
 
   const { name, img, price, category } = item
 
+  const { addItem } = useCartContext()
+
   const onAdd = (count) => {
     console.log('Agregado al carro: ' + count + ' ' + name + ' a $' + price + ' c/u')
+    addItem(item, count)
   }
   
     return (
