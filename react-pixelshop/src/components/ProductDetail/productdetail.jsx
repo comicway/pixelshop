@@ -8,12 +8,10 @@ const ProductDetail = ({ item }) => {
         return <Spinner />
       }
 
-  const { name, img, price, category } = item
-
-  const { addItem } = useCartContext()
+  const { name, img, price, category, stock } = item
+  const { addItem, isVisible } = useCartContext()
 
   const onAdd = (count) => {
-    console.log('Agregado al carro: ' + count + ' ' + name + ' a $' + price + ' c/u')
     addItem(item, count)
   }
   
@@ -29,7 +27,12 @@ const ProductDetail = ({ item }) => {
                     <div className='d-flex justify-content-between align-items-center'>
                         <small className='text-body-secondary'>{category}</small>
                     </div>
-                    <ItemCount onAdd={onAdd}/>
+                    <div className='d-flex justify-content-between align-items-center'>
+                        <small className='text-body-secondary'>{stock} disponibles</small>
+                    </div>
+                    <div style={{display: isVisible == false && 'none' }}>
+                        <ItemCount onAdd={onAdd}/>
+                    </div>
                 </div>
             </div>
         </div>
