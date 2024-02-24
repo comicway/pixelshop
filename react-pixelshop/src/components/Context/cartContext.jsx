@@ -18,31 +18,47 @@ const CartProvider = ({ children }) => {
         return localData ? JSON.parse(localData) : 0;
     })
 
+    const [total, setTotal] = useState(() => {
+        const localData = localStorage.getItem('total');
+        return localData ? JSON.parse(localData) : 0;
+    })
+
     // guardar el carrito y itemsTotal en el localStorage
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart));
         localStorage.setItem('itemsTotal', JSON.stringify(itemsTotal));
-    }, [cart, itemsTotal]);
+        localStorage.setItem('total', JSON.stringify(total));
+    }, [cart, itemsTotal, total]);
 
-    const addItem = (item, quantity) => {
-        setItemsTotal (itemsTotal + quantity)
-        setCart([...cart, { item, quantity }])
-        console.log(item)
+    const addItem = (newItem, quantity) => {
+        setItemsTotal(itemsTotal + quantity);
+        setTotal(total + (newItem.price * quantity));
+
+        const existingItem = cart.find(item => item.item.id === newItem.id);
+
+        if (existingItem) {
+            setCart(cart.map(item =>
+                item.item.id === newItem.id
+                    ? { ...item, quantity: item.quantity + quantity }
+                    : item
+            ));
+        } else {
+            setCart([...cart, { item: newItem, quantity }]);
+        }
+
+        setItemsTotal(itemsTotal + quantity);
+
+        console.log(cart)
+    }
+    //const isInCart = (id) => cart.find((item) => item.id === id)
+
+    const clearCart = () => {
+        setCart([]);
+        setItemsTotal(0);
+        setTotal(0);
     }
 
-    // addItem agrega un item al carrito. Si el item ya está en el carrito, aumenta la cantidad del item. Si el item no está en el carrito, agrega el item al carrito con la quantity especificada.
-    // const addItem = (item, quantity) => {
-    //     const itemIndex = cart.findIndex((i) => i.item.id === item.id)
-    //     if (itemIndex === -1) {
-    //         setCart([...cart, { item, quantity }])
-    //     } else {
-    //         const newCart = [...cart]
-    //         newCart[itemIndex].quantity += quantity
-    //         setCart(newCart)
-    //     }
-    // }
-
-    const valorDelContexto = { cart, itemsTotal, addItem }
+    const valorDelContexto = { cart, itemsTotal, addItem, clearCart }
 
     return (
         <Provider value={valorDelContexto}>
