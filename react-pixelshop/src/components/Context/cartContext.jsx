@@ -59,14 +59,14 @@ const CartProvider = ({ children }) => {
         setIsVisible(false);
         
     }
-    console.log(isVisible);
+    //console.log(isVisible);
     const clearCart = () => {
         setCart([]);
         setItemsTotal(0);
         setTotal(0);
     }
 
-    const valorDelContexto = { cart, itemsTotal, addItem, clearCart }
+    const valorDelContexto = { cart, itemsTotal, addItem, clearCart, isVisible}
 
     return (
         <Provider value={valorDelContexto}>

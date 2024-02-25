@@ -1,15 +1,20 @@
 //import BubbleCarrito from "../BubbleCarrito/bubblecarrito"
 import { useCartContext } from "../Context/cartContext"
+import { Link } from "react-router-dom"
 
 const CartWidget = () => {
   const { itemsTotal } = useCartContext()
   const { clearCart } = useCartContext()
     return (
-        <a className="link-secondary textdecorationnone" href="#" aria-label="Cart">
-            {itemsTotal}
-            <input type="button" value='Limpiar carro' onClick={clearCart} />
-            <i className="bi bi-basket-fill" style={{ margin: '0 10px' }}></i>
-        </a>
+        <>
+            <div className="link-secondary textdecorationnone">
+                {itemsTotal}
+                <input type="button" value='Limpiar carro' onClick={clearCart} />
+                <Link to={`/cart`}>
+                    <i className="bi bi-basket-fill" style={{ margin: '0 10px' }}></i>
+                </Link>
+            </div >
+        </>
     )
 }
 

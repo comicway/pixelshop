@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import ProductDetail from "../ProductDetail/productdetail"
-import { getProductById } from '../Utils/mockdata'
+//import { getProductById } from '../Utils/mockdata'
 import Spinner from "../Spinner/spinner"
 import { db } from "../../Firebase/config"
 import { collection, doc, getDoc } from "firebase/firestore"
