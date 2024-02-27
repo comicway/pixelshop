@@ -20,7 +20,7 @@ const ItemCount = ({onAdd}) => {
                 <input type="button" value='+' onClick={() => (count < 99 && setCount(count + 1))} />
             </div>
             <div className='btn-group'>
-                <input type="button" value='Agregar al carro' onClick={() => onAdd(count)} />
+                <input type="button" value='AGREGAR AL CARRO' onClick={() => onAdd(count)} />
             </div>
         </>
     )

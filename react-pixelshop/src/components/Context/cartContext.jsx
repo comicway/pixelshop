@@ -39,8 +39,8 @@ const CartProvider = ({ children }) => {
             return
         } 
 
-        setItemsTotal(itemsTotal + quantity);
-        setTotal(total + (newItem.price * quantity));
+        setItemsTotal(itemsTotal + quantity)
+        setTotal(total + (newItem.price * quantity))
 
         const existingItem = cart.find(item => item.item.id === newItem.id);
 
@@ -51,7 +51,7 @@ const CartProvider = ({ children }) => {
                     : item
             ));
         } else {
-            setCart([...cart, { item: newItem, quantity }]);
+            setCart([...cart, { item: newItem, quantity }])
         }
 
         setItemsTotal(itemsTotal + quantity);
@@ -66,7 +66,7 @@ const CartProvider = ({ children }) => {
         setTotal(0);
     }
 
-    const valorDelContexto = { cart, itemsTotal, addItem, clearCart, isVisible}
+    const valorDelContexto = { cart, itemsTotal, addItem, clearCart, isVisible, total}
 
     return (
         <Provider value={valorDelContexto}>
