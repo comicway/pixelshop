@@ -1,6 +1,7 @@
 import React from 'react'
 import { useCartContext } from "../Context/cartContext"
 import CartItemDetail from '../CartItemDetail/cartitemdetail'
+import { Link } from "react-router-dom"
 
 const Cart = () => {
 
@@ -39,7 +40,9 @@ const Cart = () => {
                               <strong>${total}</strong>
                           </li>
                       </ul>
-                      <input type="button" value='COMPRAR AHORA' />
+                      <Link to={`/checkout`}>
+                            <input type="button" value='COMPRAR AHORA' />     
+                      </Link>
                   </div>
                   <div className="col-md-7 col-lg-8">
                       <ul className="list-group mb-3">
