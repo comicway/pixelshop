@@ -1,4 +1,53 @@
+import React from 'react'
+import { useState } from 'react'
+import { useCartContext } from "../Context/cartContext"
+//import firebase from 'firebase/app'
+
 const CheckOut = () => { 
+    const { total, itemsTotal } = useCartContext()
+
+    const [nombre, setNombre] = useState('')
+    const [apellido, setApellido] = useState('')
+    const [email, setEmail] = useState('')
+    const [address, setAddress] = useState('')
+    const [addresstwo, setAddressTwo] = useState('')
+    const [region, setRegion] = useState('')
+    const [comuna, setComuna] = useState('')
+    const [debit, setDebit] = useState(false)
+    const [credit, setCredit] = useState(false)
+    const [nombretarjeta, setNombreTarjeta] = useState('')
+    const [numerotarjeta, setNumeroTarjeta] = useState(0)
+    const [expiration, setExpiration] = useState('')
+    const [cvv, setNumeroCvv] = useState(0)
+    const [products, setProducts] = useState([]);
+    const [totalprice, setTotalPrice] = useState(0);
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+    
+        // Crear un nuevo documento en Firebase
+        const docRef = firebase.firestore().collection('compras').add({
+          nombre,
+          apellido,
+          email,
+          address,
+          addresstwo,
+          region,
+          comuna,
+          debit,
+          credit,
+          nombretarjeta,
+          numerotarjeta,
+          expiration,
+          cvv,
+          products,
+          totalprice,
+        })
+    
+        // Mostrar un mensaje de confirmación
+        alert('Compra realizada correctamente')
+      }
+
     return (
         <>
         <div className='container'>
@@ -6,7 +55,7 @@ const CheckOut = () => {
                 <div className="col-md-5 col-lg-4 order-md-last">
                     <h4 className="d-flex justify-content-between align-items-center mb-3">
                         <span className="text-primary">Total del carrito</span>
-                        <span className="badge bg-primary rounded-pill">5{/*itemsTotal*/}</span>
+                        <span className="badge bg-primary rounded-pill">{itemsTotal}</span>
                     </h4>
                     <ul className="list-group mb-3">
                         <li className="list-group-item d-flex justify-content-between lh-sm">
@@ -25,7 +74,7 @@ const CheckOut = () => {
                         </li>
                         <li className="list-group-item d-flex justify-content-between">
                             <span>Total:</span>
-                            <strong>3214</strong>
+                            <strong>{total}</strong>
                         </li>
                     </ul>
                 </div>
@@ -37,10 +86,10 @@ const CheckOut = () => {
                           </h4>
                       </li>
                     </ul>
-                    <form className="needs-validation" noValidate="">
+                    <form className="needs-validation" noValidate="" onSubmit={handleSubmit}>
                         <div className="row g-3">
                             <div className="col-sm-6">
-                                <label htmlFor="nombree" className="form-label">
+                                <label htmlFor="nombre" className="form-label">
                                     Nombre
                                 </label>
                                 <input
@@ -50,6 +99,9 @@ const CheckOut = () => {
                                     placeholder=""
                                     defaultValue=""
                                     required=""
+                                    name="nombre"
+                                    value={nombre}
+                                    onChange={(e) => setNombre(e.target.value)}
                                 />
                                 <div className="invalid-feedback">Su nombre es requerido</div>
                             </div>
@@ -64,6 +116,9 @@ const CheckOut = () => {
                                     placeholder=""
                                     defaultValue=""
                                     required=""
+                                    name='apellido'
+                                    value={apellido}
+                                    onChange={(e) => setApellido(e.target.value)}
                                 />
                                 <div className="invalid-feedback">Su apellido es requerido</div>
                             </div>
@@ -77,6 +132,9 @@ const CheckOut = () => {
                                     id="email"
                                     placeholder="su-email@mail.com"
                                     required=""
+                                    name='email'
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
                                 />
                                 <div className="invalid-feedback">
                                     Porfavor coloca en email valido
@@ -92,27 +150,33 @@ const CheckOut = () => {
                                     id="address"
                                     placeholder="Calle y número"
                                     required=""
+                                    name='address'
+                                    value={address}
+                                    onChange={(e) => setAddress(e.target.value)}
                                 />
                                 <div className="invalid-feedback">
                                    Por favor coloca una dirección para poder hacer el envío
                                 </div>
                             </div>
                             <div className="col-12">
-                                <label htmlFor="address2" className="form-label">
+                                <label htmlFor="addresstwo" className="form-label">
                                     Departamento o casa <span className="text-body-secondary">(Optional)</span>
                                 </label>
                                 <input
                                     type="text"
                                     className="form-control"
-                                    id="address2"
+                                    id="addresstwo"
                                     placeholder="Número"
+                                    name='addresstwo'
+                                    value={addresstwo}
+                                    onChange={(e) => setAddressTwo(e.target.value)}
                                 />
                             </div>
                             <div className="col-md-6">
                                 <label htmlFor="region" className="form-label">
                                     Región
                                 </label>
-                                <select className="form-select" id="country" required="">
+                                <select className="form-select" id="region" required="">
                                     <option value="">Elige...</option>
                                     <option>Región Metropolitana</option>
                                     <option>Valparaíso</option>
@@ -123,7 +187,7 @@ const CheckOut = () => {
                                 <label htmlFor="comuna" className="form-label">
                                     Comuna
                                 </label>
-                                <select className="form-select" id="state" required="">
+                                <select className="form-select" id="comuna" required="">
                                     <option value="">Elige...</option>
                                     <option>Santiago</option>
                                     <option>Ñuñoa</option>
@@ -137,11 +201,13 @@ const CheckOut = () => {
                             <div className="form-check">
                                 <input
                                     id="credit"
-                                    name="paymentMethod"
                                     type="radio"
                                     className="form-check-input"
                                     defaultChecked=""
                                     required=""
+                                    name='credit'
+                                    value={credit}
+                                    onChange={(e) => setCredit(e.target.value)}
                                 />
                                 <label className="form-check-label" htmlFor="credit">
                                     Tarjeta de crédito
@@ -150,10 +216,12 @@ const CheckOut = () => {
                             <div className="form-check">
                                 <input
                                     id="debit"
-                                    name="paymentMethod"
                                     type="radio"
                                     className="form-check-input"
                                     required=""
+                                    name='debit'
+                                    value={debit}
+                                    obChange={(e) => setDebit(e.target.value)}
                                 />
                                 <label className="form-check-label" htmlFor="debit">
                                     Tarjeta de débito
@@ -162,15 +230,18 @@ const CheckOut = () => {
                         </div>
                         <div className="row gy-3">
                             <div className="col-md-6">
-                                <label htmlFor="cc-name" className="form-label">
+                                <label htmlFor="nombretarjeta" className="form-label">
                                     Nombre en la tarjeta
                                 </label>
                                 <input
                                     type="text"
                                     className="form-control"
-                                    id="cc-name"
+                                    id="nombretarjeta"
                                     placeholder=""
                                     required=""
+                                    name='nombretarjeta'
+                                    value={nombretarjeta}
+                                    onChange={(e) => setNombreTarjeta(e.target.value)}
                                 />
                                 <small className="text-body-secondary">
                                     El nombre impreso sobre la tarjeta
@@ -178,41 +249,50 @@ const CheckOut = () => {
                                 <div className="invalid-feedback">Este campo es requerido</div>
                             </div>
                             <div className="col-md-6">
-                                <label htmlFor="cc-number" className="form-label">
+                                <label htmlFor="numerotarjeta" className="form-label">
                                     Número de la tarjeta
                                 </label>
                                 <input
                                     type="text"
                                     className="form-control"
-                                    id="cc-number"
+                                    id="numerotarjeta"
                                     placeholder=""
                                     required=""
+                                    name='numerotarjeta'
+                                    value={numerotarjeta}
+                                    onChange={(e) => setNumeroTarjeta(e.target.value)}
                                 />
                                 <div className="invalid-feedback">Este campo es requerido</div>
                             </div>
                             <div className="col-md-6">
-                                <label htmlFor="cc-expiration" className="form-label">
+                                <label htmlFor="expiration" className="form-label">
                                     Fecha de vencimiento
                                 </label>
                                 <input
                                     type="text"
                                     className="form-control"
-                                    id="cc-expiration"
+                                    id="expiration"
                                     placeholder=""
                                     required=""
+                                    name='expiration'
+                                    value={expiration}
+                                    onChange={(e) => setExpiration(e.target.value)}
                                 />
                                 <div className="invalid-feedback">Este campo es requerido</div>
                             </div>
                             <div className="col-md-6">
-                                <label htmlFor="cc-cvv" className="form-label">
+                                <label htmlFor="cvv" className="form-label">
                                     CVV
                                 </label>
                                 <input
                                     type="text"
                                     className="form-control"
-                                    id="cc-cvv"
+                                    id="cvv"
                                     placeholder=""
                                     required=""
+                                    name='cvv'
+                                    value={cvv}
+                                    onChange={(e) => setNumeroCvv(e.target.value)}
                                 />
                                 <div className="invalid-feedback">Este campo es requerido</div>
                             </div>
