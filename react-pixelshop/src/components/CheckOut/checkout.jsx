@@ -1,10 +1,16 @@
 import React from 'react'
 import { useState } from 'react'
 import { useCartContext } from "../Context/cartContext"
-//import firebase from 'firebase/app'
+import { getFirestore, collection, addDoc } from 'firebase/firestore'
+import CartItemCheckOut from '../CartItemDetail/cartitemcheckout'
+
 
 const CheckOut = () => { 
-    const { total, itemsTotal } = useCartContext()
+    const { total, itemsTotal, cart, clearCart } = useCartContext()
+
+    const cartItemsElements = cart.map((item, key) => (
+        <CartItemCheckOut key={`item-list-${key}`} item={item} />
+    ))
 
     const [nombre, setNombre] = useState('')
     const [apellido, setApellido] = useState('')
@@ -13,40 +19,43 @@ const CheckOut = () => {
     const [addresstwo, setAddressTwo] = useState('')
     const [region, setRegion] = useState('')
     const [comuna, setComuna] = useState('')
-    const [debit, setDebit] = useState(false)
-    const [credit, setCredit] = useState(false)
+    const [paymentMethod, setPaymentMethod] = useState('')
     const [nombretarjeta, setNombreTarjeta] = useState('')
     const [numerotarjeta, setNumeroTarjeta] = useState(0)
     const [expiration, setExpiration] = useState('')
     const [cvv, setNumeroCvv] = useState(0)
-    const [products, setProducts] = useState([]);
-    const [totalprice, setTotalPrice] = useState(0);
+    const [products, setProducts] = useState(cart)
+    const [totalprice, setTotalPrice] = useState(total)
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
+
         e.preventDefault()
     
-        // Crear un nuevo documento en Firebase
-        const docRef = firebase.firestore().collection('compras').add({
-          nombre,
-          apellido,
-          email,
-          address,
-          addresstwo,
-          region,
-          comuna,
-          debit,
-          credit,
-          nombretarjeta,
-          numerotarjeta,
-          expiration,
-          cvv,
-          products,
-          totalprice,
-        })
+        const db = getFirestore()
+
+        try {
+            const docRef = await addDoc(collection(db, "compras"), {
+                nombre,
+                apellido,
+                email,
+                address,
+                addresstwo,
+                region,
+                comuna,
+                paymentMethod,
+                nombretarjeta,
+                numerotarjeta,
+                expiration,
+                cvv,
+                products,
+                totalprice,
+            })
     
-        // Mostrar un mensaje de confirmación
-        alert('Compra realizada correctamente')
-      }
+            alert('Compra realizada correctamente')
+        } catch (e) {
+            console.error("Error al crear la compra: ", e)
+        }
+    }
 
     return (
         <>
@@ -58,13 +67,7 @@ const CheckOut = () => {
                         <span className="badge bg-primary rounded-pill">{itemsTotal}</span>
                     </h4>
                     <ul className="list-group mb-3">
-                        <li className="list-group-item d-flex justify-content-between lh-sm">
-                            <div>
-                                  <h6 className="my-0">Subtotal: </h6>
-                                  <small className="text-body-secondary">Subtotal de los productos</small>
-                            </div>
-                            <span className="text-body-secondary">$1243</span>
-                        </li>
+                        {cartItemsElements}
                         <li className="list-group-item d-flex justify-content-between bg-body-tertiary">
                             <div className="text-success">
                                 <h6 className="my-0">Envío</h6>
@@ -97,7 +100,6 @@ const CheckOut = () => {
                                     className="form-control"
                                     id="nombre"
                                     placeholder=""
-                                    defaultValue=""
                                     required=""
                                     name="nombre"
                                     value={nombre}
@@ -114,7 +116,6 @@ const CheckOut = () => {
                                     className="form-control"
                                     id="apellido"
                                     placeholder=""
-                                    defaultValue=""
                                     required=""
                                     name='apellido'
                                     value={apellido}
@@ -176,21 +177,21 @@ const CheckOut = () => {
                                 <label htmlFor="region" className="form-label">
                                     Región
                                 </label>
-                                <select className="form-select" id="region" required="">
-                                    <option value="">Elige...</option>
-                                    <option>Región Metropolitana</option>
-                                    <option>Valparaíso</option>
-                                </select>
+                                    <select className="form-select" id="region" required="" onChange={(e) => setRegion(e.target.value)}>
+                                        <option value="">Elige...</option>
+                                        <option value="Región Metropolitana">Región Metropolitana</option>
+                                        <option value="Valparaíso">Valparaíso</option>
+                                    </select>
                                 <div className="invalid-feedback">Por favor selecciona una región</div>
                             </div>
                             <div className="col-md-6">
                                 <label htmlFor="comuna" className="form-label">
                                     Comuna
                                 </label>
-                                <select className="form-select" id="comuna" required="">
+                                <select className="form-select" id="comuna" required="" onChange={(e) => setComuna(e.target.value)}>
                                     <option value="">Elige...</option>
-                                    <option>Santiago</option>
-                                    <option>Ñuñoa</option>
+                                    <option value="Santiago">Santiago</option>
+                                    <option value="Ñuñoa">Ñuñoa</option>
                                 </select>
                                 <div className="invalid-feedback">Por favor selecciona una comuna</div>
                             </div>
@@ -203,11 +204,11 @@ const CheckOut = () => {
                                     id="credit"
                                     type="radio"
                                     className="form-check-input"
-                                    defaultChecked=""
                                     required=""
-                                    name='credit'
-                                    value={credit}
-                                    onChange={(e) => setCredit(e.target.value)}
+                                    name='paymentMethod'
+                                    value='credit'
+                                    checked={paymentMethod === 'credit'}
+                                    onChange={(e) => setPaymentMethod(e.target.value)}
                                 />
                                 <label className="form-check-label" htmlFor="credit">
                                     Tarjeta de crédito
@@ -219,9 +220,10 @@ const CheckOut = () => {
                                     type="radio"
                                     className="form-check-input"
                                     required=""
-                                    name='debit'
-                                    value={debit}
-                                    obChange={(e) => setDebit(e.target.value)}
+                                    name='paymentMethod'
+                                    value='debit'
+                                    checked={paymentMethod === 'debit'}
+                                    onChange={(e) => setPaymentMethod(e.target.value)}
                                 />
                                 <label className="form-check-label" htmlFor="debit">
                                     Tarjeta de débito
@@ -298,7 +300,7 @@ const CheckOut = () => {
                             </div>
                         </div>
                         <hr className="my-4" />
-                        <button className="w-100 btn btn-primary btn-lg" type="submit">
+                        <button className="w-100 btn btn-primary btn-lg" type="submit" onClick={clearCart}>
                             REALIZAR EL PEDIDO
                         </button>
                     </form>
