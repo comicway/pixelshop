@@ -10,6 +10,7 @@ import ProductDetailContainer from "./components/ProductDetailContainer/productd
 import CartPorvider from "./components/Context/cartContext"
 import Cart from "./components/Cart/cart"
 import CheckOut from "./components/CheckOut/checkout"
+import ThankyouPage from "./components/ThankyouPage/thankyoupage"
 
 function App(){
     return (
@@ -36,6 +37,7 @@ function App(){
                   <Route path='/product/:productId' element={<ProductDetailContainer/>} />
                   <Route path='/cart' element={<Cart/>} />
                   <Route path='/checkout' element={<CheckOut/>} />
+                  <Route path='/thankyoupage' element={<ThankyouPage/>} />
                   <Route path='*' element={<PageNotFound/>} />
                 </Routes>
               </div>
