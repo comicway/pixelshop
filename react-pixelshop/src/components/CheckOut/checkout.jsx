@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useCartContext } from "../Context/cartContext"
 import { getFirestore, collection, addDoc } from 'firebase/firestore'
 import CartItemCheckOut from '../CartItemDetail/cartitemcheckout'
+import { Link } from "react-router-dom"
 
 
 const CheckOut = () => { 
@@ -51,7 +52,7 @@ const CheckOut = () => {
                 totalprice,
             })
     
-            alert('Compra realizada correctamente')
+            console.log('Compra realizada correctamente')
         } catch (e) {
             console.error("Error al crear la compra: ", e)
         }
@@ -300,10 +301,15 @@ const CheckOut = () => {
                             </div>
                         </div>
                         <hr className="my-4" />
-                        <button className="w-100 btn btn-primary btn-lg" type="submit" onClick={clearCart}>
-                            REALIZAR EL PEDIDO
-                        </button>
+                            <button className="w-100 btn btn-primary btn-lg" type="submit" onClick={clearCart}>
+                                REALIZAR EL PEDIDO
+                            </button>
                     </form>
+                    <Link to="/thankyoupage">
+                            <button className="w-100 btn btn-secundary btn-lg">
+                                VER PEDIDO
+                            </button>
+                    </Link>
                 </div>
             </div>
         </div>
