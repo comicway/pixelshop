@@ -1,4 +1,6 @@
 import Spinner from "../Spinner/spinner"
+import ItemCount from "../ItemCount/itemcount"
+import { useCartContext } from "../Context/cartContext"
 
 const ProductDetail = ({ item }) => {
 
@@ -6,7 +8,12 @@ const ProductDetail = ({ item }) => {
         return <Spinner />
       }
 
-  const { name, img, price, category } = item
+  const { name, img, price, category, stock } = item
+  const { addItem, isVisible } = useCartContext()
+
+  const onAdd = (count) => {
+    addItem(item, count)
+  }
   
     return (
         <div className='col-4 padding-card'>
@@ -19,9 +26,12 @@ const ProductDetail = ({ item }) => {
                     </div>
                     <div className='d-flex justify-content-between align-items-center'>
                         <small className='text-body-secondary'>{category}</small>
-                            <div className='btn-group'>
-                                Agregar al carro
-                            </div>
+                    </div>
+                    <div className='d-flex justify-content-between align-items-center'>
+                        <small className='text-body-secondary'>{stock} disponibles</small>
+                    </div>
+                    <div style={{display: isVisible == false && 'none' }}>
+                        <ItemCount onAdd={onAdd}/>
                     </div>
                 </div>
             </div>
