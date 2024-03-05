@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useCartContext } from "../Context/cartContext"
-import { getFirestore, collection, addDoc } from 'firebase/firestore'
+import { getFirestore, collection, addDoc, Timestamp } from 'firebase/firestore'
 import CartItemCheckOut from '../CartItemDetail/cartitemcheckout'
 import { Link } from "react-router-dom"
 
@@ -50,6 +50,7 @@ const CheckOut = () => {
                 cvv,
                 products,
                 totalprice,
+                fecha: Timestamp.now(),
             })
     
             console.log('Compra realizada correctamente')
