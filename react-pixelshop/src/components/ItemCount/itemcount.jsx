@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { toast } from 'react-hot-toast'
 
 const ItemCount = ({onAdd}) => {
     const [count, setCount] = useState(1)
@@ -11,6 +12,11 @@ const ItemCount = ({onAdd}) => {
     const onChangeHandler = (e) => { 
         setCount(Number(e.target.value))
     }
+
+    const handleAddToCart = () => {
+        onAdd(count)
+        toast('Agregado al carrito')
+    }
     
     return (
         <>
@@ -20,7 +26,7 @@ const ItemCount = ({onAdd}) => {
                 <input type="button" value='+' onClick={() => (count < 99 && setCount(count + 1))} />
             </div>
             <div className='btn-group'>
-                <input type="button" value='AGREGAR AL CARRO' onClick={() => onAdd(count)} />
+                <input type="button" value='AGREGAR AL CARRO' onClick={handleAddToCart} />
             </div>
         </>
     )

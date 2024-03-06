@@ -5,6 +5,7 @@ import ProductDetail from "../ProductDetail/productdetail"
 import Spinner from "../Spinner/spinner"
 import { db } from "../../Firebase/config"
 import { collection, doc, getDoc } from "firebase/firestore"
+import { Toaster } from 'react-hot-toast'
 
 const ProductDetailContainer = () => {
     const [ loading, setLoading ] = useState(true)
@@ -31,6 +32,7 @@ const ProductDetailContainer = () => {
 return (
     <>
       {loading ? <Spinner /> : <ProductDetail item={item} />}
+      <Toaster />
     </>
   );
 

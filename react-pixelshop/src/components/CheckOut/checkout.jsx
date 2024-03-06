@@ -4,6 +4,7 @@ import { useCartContext } from "../Context/cartContext"
 import { getFirestore, collection, addDoc, Timestamp } from 'firebase/firestore'
 import CartItemCheckOut from '../CartItemDetail/cartitemcheckout'
 import { Link } from "react-router-dom"
+import { Toaster, toast } from 'react-hot-toast'
 
 
 const CheckOut = () => { 
@@ -302,18 +303,21 @@ const CheckOut = () => {
                             </div>
                         </div>
                         <hr className="my-4" />
+                        <a onClick={() => toast('Compra realizada con éxito')}>
                             <button className="w-100 btn btn-primary btn-lg" type="submit" onClick={clearCart}>
                                 REALIZAR EL PEDIDO
                             </button>
+                        </a>  
                     </form>
                     <Link to="/thankyoupage">
-                            <button className="w-100 btn btn-secundary btn-lg">
+                            <button className="btn btn-outline-secondary btn-lg">
                                 VER PEDIDO
                             </button>
                     </Link>
                 </div>
             </div>
         </div>
+        <Toaster />
     </>
     )
 }
