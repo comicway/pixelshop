@@ -1,13 +1,27 @@
+import React from 'react'
+import { getFirestore, collection, addDoc, Timestamp } from 'firebase/firestore'
 import { object } from "prop-types"
 
 function CheckOutNoControlado() {
-    const submit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        const data = Array.from(new FormData(e.target))
-        console.log(Object.fromEntries(data))
+
+        const formData = new FormData(e.target)
+        const data = Object.fromEntries(formData)
+
+        const db = getFirestore()
+        try {
+            const docRef = await addDoc(collection(db, 'compras'), {
+                ...data,
+                fecha: Timestamp.now()
+            });
+            console.log('Compra realizada correctamente')
+        } catch (error) {
+            console.error('Error al crear la compra: ', error)
+        }
     }
     return (
-        <form className="needs-validation" noValidate="" onSubmit={submit}>
+        <form className="needs-validation" noValidate="" onSubmit={handleSubmit}>
                         <div className="row g-3">
                             <div className="col-sm-6">
                                 <label htmlFor="nombre" className="form-label">
@@ -20,7 +34,6 @@ function CheckOutNoControlado() {
                                     placeholder=""
                                     required=""
                                     name="nombre"
-                                    value={nombre}
                                 />
                                 <div className="invalid-feedback">Su nombre es requerido</div>
                             </div>
@@ -35,7 +48,6 @@ function CheckOutNoControlado() {
                                     placeholder=""
                                     required=""
                                     name='apellido'
-                                    value={apellido}
                                 />
                                 <div className="invalid-feedback">Su apellido es requerido</div>
                             </div>
@@ -50,7 +62,6 @@ function CheckOutNoControlado() {
                                     placeholder="su-email@mail.com"
                                     required=""
                                     name='email'
-                                    value={email}
                                 />
                                 <div className="invalid-feedback">
                                     Porfavor coloca en email valido
@@ -67,7 +78,6 @@ function CheckOutNoControlado() {
                                     placeholder="Calle y número"
                                     required=""
                                     name='address'
-                                    value={address}
                                 />
                                 <div className="invalid-feedback">
                                    Por favor coloca una dirección para poder hacer el envío
@@ -83,7 +93,6 @@ function CheckOutNoControlado() {
                                     id="addresstwo"
                                     placeholder="Número"
                                     name='addresstwo'
-                                    value={addresstwo}
                                 />
                             </div>
                             <div className="col-md-6">
@@ -120,7 +129,6 @@ function CheckOutNoControlado() {
                                     required=""
                                     name='paymentMethod'
                                     value='credit'
-                                    checked={paymentMethod === 'credit'}
                                 />
                                 <label className="form-check-label" htmlFor="credit">
                                     Tarjeta de crédito
@@ -134,7 +142,6 @@ function CheckOutNoControlado() {
                                     required=""
                                     name='paymentMethod'
                                     value='debit'
-                                    checked={paymentMethod === 'debit'}
                                 />
                                 <label className="form-check-label" htmlFor="debit">
                                     Tarjeta de débito
@@ -153,7 +160,6 @@ function CheckOutNoControlado() {
                                     placeholder=""
                                     required=""
                                     name='nombretarjeta'
-                                    value={nombretarjeta}
                                 />
                                 <small className="text-body-secondary">
                                     El nombre impreso sobre la tarjeta
@@ -171,7 +177,6 @@ function CheckOutNoControlado() {
                                     placeholder=""
                                     required=""
                                     name='numerotarjeta'
-                                    value={numerotarjeta}
                                 />
                                 <div className="invalid-feedback">Este campo es requerido</div>
                             </div>
@@ -186,7 +191,6 @@ function CheckOutNoControlado() {
                                     placeholder=""
                                     required=""
                                     name='expiration'
-                                    value={expiration}
                                 />
                                 <div className="invalid-feedback">Este campo es requerido</div>
                             </div>
@@ -201,7 +205,6 @@ function CheckOutNoControlado() {
                                     placeholder=""
                                     required=""
                                     name='cvv'
-                                    value={cvv}
                                 />
                                 <div className="invalid-feedback">Este campo es requerido</div>
                             </div>
