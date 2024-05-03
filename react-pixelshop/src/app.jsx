@@ -12,7 +12,8 @@ import Cart from "./components/Cart/cart"
 import CheckOut from "./components/CheckOut/checkout"
 import ThankyouPage from "./components/ThankyouPage/thankyoupage"
 import CheckOutNoControlado from "./components/CheckOut/CheckOutNoCotrolado"
-import CheckOutControlled from "./components/CheckOut/CheckOutControlled";
+import CheckOutControlled from "./components/CheckOut/CheckOutControlled"
+import CheckOutSincronico from "./components/CheckOut/CheckOutSincronico"
 
 function App(){
     return (
@@ -42,6 +43,7 @@ function App(){
                   <Route path='/thankyoupage' element={<ThankyouPage/>} />
                   <Route path='/checkoutnocontrolado' element={<CheckOutNoControlado/>} />
                   <Route path='/checkOutControlled' element={<CheckOutControlled/>} />
+                  <Route path='/checkoutsincronico' element={<CheckOutSincronico/>} />
                   <Route path='*' element={<PageNotFound/>} />
                 </Routes>
               </div>
