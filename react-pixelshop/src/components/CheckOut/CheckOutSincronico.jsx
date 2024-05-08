@@ -14,18 +14,18 @@ const CheckOutSincronico = () => {
         <CartItemCheckOut key={`item-list-${key}`} item={item} />
     ))
 
-    const [nombre, setNombre] = React.useState({ value: "", hasError: false });
-    const [apellido, setApellido] = useState('')
-    const [email, setEmail] = useState('')
+    const [nombre, setNombre] = useState({ value: "", error: false });
+    const [apellido, setApellido] = useState({ value: "", error: false });
+    const [email, setEmail] = useState({ value: "", error: false });
     const [address, setAddress] = useState('')
     const [addresstwo, setAddressTwo] = useState('')
     const [region, setRegion] = useState('')
     const [comuna, setComuna] = useState('')
-    const [paymentMethod, setPaymentMethod] = useState('')
-    const [nombretarjeta, setNombreTarjeta] = useState('')
-    const [numerotarjeta, setNumeroTarjeta] = useState(0)
-    const [expiration, setExpiration] = useState('')
-    const [cvv, setNumeroCvv] = useState(0)
+    const [paymentMethod, setPaymentMethod] = useState({ value: "", error: false });
+    const [nombretarjeta, setNombreTarjeta] = useState({ value: "", error: false });
+    const [numerotarjeta, setNumeroTarjeta] = useState({ value: "", error: false });
+    const [expiration, setExpiration] = useState({ value: "", error: false });
+    const [cvv, setNumeroCvv] = useState({ value: "", error: false });
     const [products, setProducts] = useState(cart)
     const [totalprice, setTotalPrice] = useState(total)
 
@@ -61,6 +61,8 @@ const CheckOutSincronico = () => {
     }
 
     const textOnlyRegexp = new RegExp(/^[A-Za-z ]+$/)
+    const numberOnlyRegexp = new RegExp(/^[0-9]+$/)
+    const emailRegexp = new RegExp(/^[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+$/)
 
     const handleBlurNombre = () => {
         const hasError = !textOnlyRegexp.test(nombre.value)
