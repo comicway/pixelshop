@@ -69,9 +69,18 @@ const CheckOutSincronico = () => {
         setNombre(prevState => ({ ...prevState, hasError }))
     }
     const handleChangeNombre = (e) => {
-        const newValue = e.target.value;
-        setNombre(prevState => ({ ...prevState, value: newValue }));
-    };
+        const newValue = e.target.value
+        setNombre(prevState => ({ ...prevState, value: newValue }))
+    }
+
+    const handleBlurApellido = () => {
+        const hasError = !textOnlyRegexp.test(apellido.value)
+        setApellido(prevState => ({ ...prevState, hasError }))
+    }
+    const handleChangeApellido = (e) => {
+        const newValue = e.target.value
+        setApellido(prevState => ({ ...prevState, value: newValue }))
+    }
 
     return (
         <>
@@ -136,11 +145,12 @@ const CheckOutSincronico = () => {
                                     id="apellido"
                                     placeholder=""
                                     required=""
-                                    name='apellido'
-                                    value={apellido}
-                                    onChange={(e) => setApellido(e.target.value)}
+                                    value={apellido.value}
+                                    onChange={handleChangeApellido}
+                                    onBlur={handleBlurApellido} 
                                 />
                                 <div className="invalid-feedback">Su apellido es requerido</div>
+                                {apellido.hasError && <p className="text-danger">Solo se permiten letras.</p>}
                             </div>
                             <div className="col-12">
                                 <label htmlFor="email" className="form-label">
