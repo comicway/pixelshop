@@ -40,7 +40,7 @@ const Cart = () => {
                               <strong>${total}</strong>
                           </li>
                       </ul>
-                      <Link to={`/checkout`}>
+                      <Link to={`/CheckOutSincronico`}>
                             <input type="button" value='COMPRAR AHORA' />     
                       </Link>
                   </div>
