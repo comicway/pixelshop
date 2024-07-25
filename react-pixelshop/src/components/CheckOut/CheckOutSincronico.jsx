@@ -60,10 +60,12 @@ const CheckOutSincronico = () => {
         }
     }
 
+    // EXPRESIONES REGULARES
     const textOnlyRegexp = new RegExp(/^[A-Za-z ]+$/)
     const numberOnlyRegexp = new RegExp(/^[0-9]+$/)
     const emailRegexp = new RegExp(/^[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+$/)
 
+    // PARA CAMPO NOMBRE
     const handleBlurNombre = () => {
         const hasError = !textOnlyRegexp.test(nombre.value)
         setNombre(prevState => ({ ...prevState, hasError }))
@@ -72,7 +74,7 @@ const CheckOutSincronico = () => {
         const newValue = e.target.value
         setNombre(prevState => ({ ...prevState, value: newValue }))
     }
-
+    // PARA CAMPO APELLIDO
     const handleBlurApellido = () => {
         const hasError = !textOnlyRegexp.test(apellido.value)
         setApellido(prevState => ({ ...prevState, hasError }))
@@ -80,6 +82,51 @@ const CheckOutSincronico = () => {
     const handleChangeApellido = (e) => {
         const newValue = e.target.value
         setApellido(prevState => ({ ...prevState, value: newValue }))
+    }
+    // PARA CAMPO EMAIL
+    const handleBlurEmail = () => {
+        const hasError = !emailRegexp.test(email.value)
+        setEmail(prevState => ({ ...prevState, hasError }))
+    }
+    const handleChangeEmail = (e) => {
+        const newValue = e.target.value
+        setEmail(prevState => ({ ...prevState, value: newValue }))
+    }
+    // PARA CAMPO NOMBRE DE LA TARJETA
+    const handleBlurNombreTarjeta = () => {
+        const hasError = !textOnlyRegexp.test(nombretarjeta.value)
+        setNombreTarjeta(prevState => ({ ...prevState, hasError }))
+    }
+    const handleChangeNombreTarjeta = (e) => {
+        const newValue = e.target.value
+        setNombreTarjeta(prevState => ({ ...prevState, value: newValue }))
+    }
+    // PARA CAMPO NUMERO DE LA TARJETA
+    const handleBlurNumeroTarjeta = () => {
+        const hasError = !numberOnlyRegexp.test(numerotarjeta.value)
+        setNumeroTarjeta(prevState => ({ ...prevState, hasError }))
+    }
+    const handleChangeNumeroTarjeta = (e) => {
+        const newValue = e.target.value
+        setNumeroTarjeta(prevState => ({ ...prevState, value: newValue }))
+    }
+    // PARA CAMPO FECHA DE VENCIMIENTO
+    const handleBlurExpiration = () => {
+        const hasError = !numberOnlyRegexp.test(expiration.value)
+        setExpiration(prevState => ({ ...prevState, hasError }))
+    }
+    const handleChangeExpiration = (e) => {
+        const newValue = e.target.value
+        setExpiration(prevState => ({ ...prevState, value: newValue }))
+    }
+    // PARA CAMPO CVV
+    const handleBlurNumeroCvv = () => {
+        const hasError = !numberOnlyRegexp.test(cvv.value)
+        setNumeroCvv(prevState => ({ ...prevState, hasError }))
+    }
+    const handleChangeNumeroCvv = (e) => {
+        const newValue = e.target.value
+        setNumeroCvv(prevState => ({ ...prevState, value: newValue }))
     }
 
     return (
@@ -163,12 +210,12 @@ const CheckOutSincronico = () => {
                                     placeholder="su-email@mail.com"
                                     required=""
                                     name='email'
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
+                                    value={email.value}
+                                    onChange={handleChangeEmail}
+                                    onBlur={handleBlurEmail} 
                                 />
-                                <div className="invalid-feedback">
-                                    Porfavor coloca en email valido
-                                </div>
+                                <div className="invalid-feedback">Porfavor coloca en email valido</div>
+                                {email.hasError && <p className="text-danger">No has colcoado un correo válido.</p>}
                             </div>
                             <div className="col-12">
                                 <label htmlFor="direccion" className="form-label">
@@ -271,13 +318,15 @@ const CheckOutSincronico = () => {
                                     placeholder=""
                                     required=""
                                     name='nombretarjeta'
-                                    value={nombretarjeta}
-                                    onChange={(e) => setNombreTarjeta(e.target.value)}
+                                    value={nombretarjeta.value}
+                                    onChange={handleChangeNombreTarjeta}
+                                    onBlur={handleBlurNombreTarjeta} 
                                 />
                                 <small className="text-body-secondary">
                                     El nombre impreso sobre la tarjeta
                                 </small>
                                 <div className="invalid-feedback">Este campo es requerido</div>
+                                {nombretarjeta.hasError && <p className="text-danger">Solo se permite texto</p>}
                             </div>
                             <div className="col-md-6">
                                 <label htmlFor="numerotarjeta" className="form-label">
@@ -290,10 +339,12 @@ const CheckOutSincronico = () => {
                                     placeholder=""
                                     required=""
                                     name='numerotarjeta'
-                                    value={numerotarjeta}
-                                    onChange={(e) => setNumeroTarjeta(e.target.value)}
+                                    value={nombretarjeta.value}
+                                    onChange={handleChangeNombreTarjeta}
+                                    onBlur={handleBlurNombreTarjeta} 
                                 />
                                 <div className="invalid-feedback">Este campo es requerido</div>
+                                {numerotarjeta.hasError && <p className="text-danger">Solo se permite números</p>}
                             </div>
                             <div className="col-md-6">
                                 <label htmlFor="expiration" className="form-label">
@@ -305,11 +356,13 @@ const CheckOutSincronico = () => {
                                     id="expiration"
                                     placeholder=""
                                     required=""
-                                    name='expiration'
-                                    value={expiration}
-                                    onChange={(e) => setExpiration(e.target.value)}
+                                    name="expiration"
+                                    value={expiration.value}
+                                    onChange={handleChangeExpiration}
+                                    onBlur={handleBlurExpiration}
                                 />
                                 <div className="invalid-feedback">Este campo es requerido</div>
+                                {expiration.hasError && <p className="text-danger">Solo se permite números</p>}
                             </div>
                             <div className="col-md-6">
                                 <label htmlFor="cvv" className="form-label">
@@ -322,10 +375,12 @@ const CheckOutSincronico = () => {
                                     placeholder=""
                                     required=""
                                     name='cvv'
-                                    value={cvv}
-                                    onChange={(e) => setNumeroCvv(e.target.value)}
+                                    value={cvv.value}
+                                    onChange={handleChangeNumeroCvv}
+                                    onBlur={handleBlurNumeroCvv}
                                 />
                                 <div className="invalid-feedback">Este campo es requerido</div>
+                                {cvv.hasError && <p className="text-danger">Solo se permite números</p>}
                             </div>
                         </div>
                         <hr className="my-4" />
