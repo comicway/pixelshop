@@ -34,15 +34,13 @@ const ThankyouPage = () => {
   return loading ? (
     <Spinner />
   ) : (
-      <>
         <div className="container">
           <div className="row">
             <div className="col-md-12">
               <div className="h-100 p-5 bg-body-tertiary border rounded-3">
                 <h2>Gracias por tu compra!</h2>
                 <ul>
-                  {
-                    checkoutData.map((item) => (
+                  {checkoutData.map((item) => (
                       <div key={item.id}>
                         <h4>Sus datos de envío</h4>
                         <p>Numero de orden: {item.id}</p>
@@ -54,13 +52,12 @@ const ThankyouPage = () => {
                     ))}
                 </ul>
                 <Link to="/shop">
-                  <button class="btn btn-outline-secondary" type="button">Regresar</button>
+                  <button className="btn btn-outline-secondary" type="button">Regresar</button>
                 </Link>
               </div>
             </div>
           </div>
         </div>
-      </>
   )
 };
 

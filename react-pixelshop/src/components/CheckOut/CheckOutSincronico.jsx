@@ -339,9 +339,9 @@ const CheckOutSincronico = () => {
                                     placeholder=""
                                     required=""
                                     name='numerotarjeta'
-                                    value={nombretarjeta.value}
-                                    onChange={handleChangeNombreTarjeta}
-                                    onBlur={handleBlurNombreTarjeta} 
+                                    value={numerotarjeta.value}
+                                    onChange={handleChangeNumeroTarjeta}
+                                    onBlur={handleBlurNumeroTarjeta} 
                                 />
                                 <div className="invalid-feedback">Este campo es requerido</div>
                                 {numerotarjeta.hasError && <p className="text-danger">Solo se permite números</p>}
@@ -384,17 +384,14 @@ const CheckOutSincronico = () => {
                             </div>
                         </div>
                         <hr className="my-4" />
-                        <a onClick={() => toast('Compra realizada con éxito')}>
-                            <button className="w-100 btn btn-primary btn-lg" type="submit" onClick={clearCart}>
-                                REALIZAR EL PEDIDO
-                            </button>
-                        </a>  
+                        <Link to="/thankyoupage">
+                            <a onClick={() => toast('Compra realizada con éxito')}>
+                                <button className="w-100 btn btn-primary btn-lg" type="submit" onClick={clearCart}>
+                                    REALIZAR EL PEDIDO
+                                </button>
+                            </a>
+                        </Link>  
                     </form>
-                    <Link to="/thankyoupage">
-                            <button className="btn btn-outline-secondary btn-lg">
-                                VER PEDIDO
-                            </button>
-                    </Link>
                 </div>
             </div>
         </div>
